@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volleyball Guide - Tolerance & Acceptance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #e63946;
+            --secondary: #1d3557;
+            --accent: #457b9d;
+            --light: #f1faee;
+            --success: #2a9d8f;
+            --warning: #f4a261;
+            --dark: #264653;
+            --gradient: linear-gradient(135deg, #e63946 0%, #457b9d 50%, #1d3557 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --radius: 15px;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* Animated Background */
+        .court-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(45deg, #e9f5db 0%, #c7f9cc 25%, #80ed99 50%, #57cc99 75%, #38a3a5 100%);
+            background-size: 400% 400%;
+            animation: courtAnimation 15s ease infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes courtAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .net {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--primary) 0px,
+                var(--primary) 10px,
+                var(--light) 10px,
+                var(--light) 20px
+            );
+            transform: translateY(-50%);
+            z-index: -1;
+            opacity: 0.4;
+        }
+        
+        /* Floating Volleyballs */
+        .volleyball {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .volleyball::before, .volleyball::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 2px solid var(--light);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .volleyball::before {
+            width: 80%;
+            height: 80%;
+        }
+        
+        .volleyball::after {
+            width: 60%;
+            height: 60%;
+        }
+        
+        /* Page Container */
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        /* Front Page */
+        #front-page {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: var(--gradient);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            animation: pulse 2s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo::after {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            border: 3px solid var(--light);
+            border-radius: 50%;
+        }
+        
+        .logo i {
+            font-size: 50px;
+            color: var(--light);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .presenter {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin: 30px 0;
+            font-weight: 500;
+        }
+        
+        .presenter-names {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            margin: 10px auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            text-decoration: none;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--secondary);
+            border: 2px solid var(--accent);
+        }
+        
+        /* Guide Pages */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .guide-header {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius) var(--radius) 0 0;
+            box-shadow: var(--shadow);
+            margin-bottom: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .guide-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+        
+        .guide-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .guide-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: 300;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+            gap: 10px;
+        }
+        
+        .step-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            transition: var(--transition);
+        }
+        
+        .step-dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+        
+        .step-dot.completed {
+            background: var(--success);
+        }
+        
+        .content-card {
+            background: white;
+            padding: 40px;
+            border-radius: 0 0 var(--radius) var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+        
+        .step-title {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .content-box {
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .content-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .principles {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 5px solid var(--accent);
+        }
+        
+        .example {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-left: 5px solid var(--primary);
+        }
+        
+        .content-box h3 {
+            font-size: 1.4rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .content-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .content-box li {
+            padding: 10px 0;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .content-box li:last-child {
+            border-bottom: none;
+        }
+        
+        .content-box li i {
+            color: var(--success);
+            margin-top: 3px;
+        }
+        
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .nav-btn-prev {
+            background: #f5f5f5;
+            color: var(--secondary);
+        }
+        
+        .nav-btn-next {
+            background: var(--gradient);
+            color: white;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: #eee;
+            border-radius: 3px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .tagline { font-size: 1.2rem; }
+            .page-container { padding: 15px; }
+            .content-card { padding: 25px; }
+            .guide-header { padding: 20px; }
+            .guide-header h1 { font-size: 1.8rem; }
+            .step-title { font-size: 1.5rem; }
+            .step-number { width: 40px; height: 40px; font-size: 1.2rem; }
+        }
+        
+        /* Key Points Style */
+        .key-points {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: var(--radius);
+            border-left: 5px solid var(--success);
+        }
+        
+        .key-points ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .key-points li {
+            padding: 15px 0;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+        }
+        
+        .key-points li:last-child {
+            border-bottom: none;
+        }
+        
+        .key-points li i {
+            color: var(--success);
+            font-size: 1.5rem;
+            width: 30px;
+            text-align: center;
+        }
+        
+        /* Values Display */
+        .values-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .value-card {
+            background: white;
+            padding: 25px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border-top: 5px solid var(--accent);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .value-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .value-card h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="court-bg"></div>
+    <div class="net"></div>
+    
+    <!-- Floating Volleyballs -->
+    <div class="volleyball" style="top:20%; left:10%;"></div>
+    <div class="volleyball" style="top:70%; left:85%;"></div>
+    <div class="volleyball" style="top:40%; left:90%;"></div>
+    
+    <!-- Page Container -->
+    <div class="page-container">
+        
+        <!-- Front Page -->
+        <div id="front-page" class="page active">
+            <div class="logo">
+                <i class="fas fa-volleyball-ball"></i>
+            </div>
+            
+            <h1>Grade 8 Physical Education Volleyball</h1>
+            <p class="tagline">Learning Competencies: Displays tolerance and acceptance of individuals with varying skills and abilities</p>
+            
+            <div class="presenter">
+                Presented by:
+                <div class="presenter-names">Sapling Mahendra & Badang Rojan</div>
+            </div>
+            
+            <p style="max-width: 600px; margin: 20px auto; color: var(--secondary); font-size: 1.1rem;">
+                Welcome to our lesson on tolerance and acceptance in volleyball. This interactive guide will help you understand how to create a positive and inclusive environment for all players.
+            </p>
+            
+            <button class="btn" id="startButton">
+                <i class="fas fa-play-circle"></i> Start Learning
+            </button>
+        </div>
+        
+        <!-- Slide 2: Learning Objectives -->
+        <div id="slide2" class="page">
+            <div class="guide-header">
+                <h1>Learning Objectives</h1>
+                <p class="guide-subtitle">What you will learn in this lesson</p>
+            </div>
+            
+            <div class="content-card">
+                <div class="step-title">
+                    <span class="step-number"><i class="fas fa-bullseye"></i></span>
+                    <span>By the end of this lesson, you should be able to:</span>
+                </div>
+                
+                <div class="key-points">
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Understand the meaning of tolerance and acceptance in volleyball</li>
+                        <li><i class="fas fa-check-circle"></i> Show respect toward classmates with different skill levels</li>
+                        <li><i class="fas fa-check-circle"></i> Demonstrate positive behavior during games and activities</li>
+                        <li><i class="fas fa-check-circle"></i> Apply teamwork and sportsmanship in class</li>
+                    </ul>
+                </div>
+                
+                <div class="navigation">
+                    <button class="nav-btn nav-btn-prev">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                    <button class="nav-btn nav-btn-next">
+                        Next: Meaning of Tolerance <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 3: Meaning of Tolerance -->
+        <div id="slide3" class="page">
+            <div class="guide-header">
+                <h1>Meaning of Tolerance in Volleyball</h1>
+                <p class="guide-subtitle">Understanding and respecting differences</p>
+            </div>
+            
+            <div class="content-card">
+                <div class="step-title">
+                    <span class="step-number"><i class="fas fa-handshake"></i></span>
+                    <span>What does tolerance mean in volleyball?</span>
+                </div>
+                
+                <div class="content-grid">
+                    <div class="content-box principles">
+                        <h3><i class="fas fa-users"></i> Respecting Teammates</h3>
+                        <p>Tolerance means respecting teammates regardless of their skill level, background, or experience. Every player deserves equal respect on the court.</p>
+                    </div>
+                    
+                    <div class="content-box example">
+                        <h3><i class="fas fa-volleyball-ball"></i> Accepting Mistakes</h3>
+                        <p>Understanding that everyone makes mistakes during games. Instead of getting frustrated, we support each other and learn from errors.</p>
+                    </div>
+                    
+                    <div class="content-box principles">
+                        <h3><i class="fas fa-clock"></i> Different Learning Paces</h3>
+                        <p>Recognizing that everyone learns at a different pace. Some players may pick up skills quickly, while others need more time and practice.</p>
+                    </div>
+                    
+                    <div class="content-box example">
+                        <h3><i class="fas fa-comments"></i> Positive Communication</h3>
+                        <p>Using encouraging words instead of criticism. "Good try!" or "You'll get it next time!" helps build confidence.</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="nav-btn nav-btn-prev">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-btn nav-btn-next">
+                        Next: Acceptance in Volleyball <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 4: Acceptance in Volleyball -->
+        <div id="slide4" class="page">
+            <div class="guide-header">
+                <h1>Acceptance in Volleyball</h1>
+                <p class="guide-subtitle">Creating an inclusive environment for all players</p>
+            </div>
+            
+            <div class="content-card">
+                <div class="step-title">
+                    <span class="step-number"><i class="fas fa-heart"></i></span>
+                    <span>How acceptance improves team dynamics</span>
+                </div>
+                
+                <div class="key-points">
+                    <ul>
+                        <li><i class="fas fa-chart-line"></i> <strong>Players have different skill levels</strong> - From beginners to advanced players, everyone brings value to the team</li>
+                        <li><i class="fas fa-balance-scale"></i> <strong>Acceptance means treating everyone fairly</strong> - Equal opportunities for play and participation</li>
+                        <li><i class="fas fa-hands-helping"></i> <strong>Supporting both beginners and skilled players</strong> - Creating a supportive environment for growth</li>
+                        <li><i class="fas fa-user-friends"></i> <strong>Valuing each player's contribution</strong> - Recognizing that teamwork matters more than individual skill</li>
+                        <li><i class="fas fa-smile"></i> <strong>Creating a positive team culture</strong> - Where everyone feels welcome and valued</li>
+                    </ul>
+                </div>
+                
+                <p style="margin-top: 25px; padding: 20px; background: #f8f9fa; border-radius: var(--radius); font-style: italic;">
+                    <i class="fas fa-lightbulb" style="color: var(--warning); margin-right: 10px;"></i>
+                    <strong>Remember:</strong> A team that accepts each other's differences performs better and has more fun!
+                </p>
+                
+                <div class="navigation">
+                    <button class="nav-btn nav-btn-prev">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-btn nav-btn-next">
+                        Next: Importance of Tolerance <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 5: Importance of Tolerance and Acceptance -->
+        <div id="slide5" class="page">
+            <div class="guide-header">
+                <h1>Importance of Tolerance and Acceptance</h1>
+                <p class="guide-subtitle">Why it matters in volleyball</p>
+            </div>
+            
+            <div class="content-card">
+                <div class="step-title">
+                    <span class="step-number"><i class="fas fa-star"></i></span>
+                    <span>Key benefits of an inclusive volleyball environment</span>
+                </div>
+                
+                <div class="content-grid">
+                    <div class="content-box principles">
+                        <h3><i class="fas fa-users"></i> Volleyball is a Team Sport</h3>
+                        <p>Success depends on teamwork, communication, and mutual support. Tolerance and acceptance strengthen team bonds.</p>
+                    </div>
+                    
+                    <div class="content-box example">
+                        <h3><i class="fas fa-chart-line"></i> Teamwork Improves Performance</h3>
+                        <p>When players support each other, team performance improves significantly. Confidence grows with positive reinforcement.</p>
+                    </div>
+                    
+                    <div class="content-box principles">
+                        <h3><i class="fas fa-graduation-cap"></i> Positive Environment Helps Learning</h3>
+                        <p>Players learn better when they feel safe to make mistakes and try new skills without fear of judgment.</p>
+                    </div>
+                    
+                    <div class="content-box example">
+                        <h3><i class="fas fa-trophy"></i> Better Sports Experience</h3>
+                        <p>Inclusive teams enjoy the game more, have better attendance, and develop lifelong friendships.</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="nav-btn nav-btn-prev">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-btn nav-btn-next">
+                        Next: Examples During the Game <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 6: Examples During the Game -->
+        <div id="slide6" class="page">
+            <div class="guide-header">
+                <h1>Examples During the Game</h1>
+                <p class="guide-subtitle">Practical ways to show tolerance and acceptance</p>
+            </div>
+            
+            <div class="content-card">
+                <div class="step-title">
+                    <span class="step-number"><i class="fas fa-basketball-ball"></i></span>
+                    <span>Real-game situations where tolerance matters</span>
+                </div>
+                
+                <div class="key-points">
+                    <ul>
+                        <li><i class="fas fa-comment-medical"></i> <strong>Encouraging teammates after mistakes</strong> - Say "Good effort!" or "Next point!" instead of criticizing</li>
+                        <li><i class="fas fa-share-alt"></i> <strong>Passing the ball to all players</strong> - Include everyone in the game, not just the best players</li>
+                        <li><i class="fas fa-hands-helping"></i> <strong>Helping teammates improve their skills</strong> - Offer tips and practice together</li>
+                        <li><i class="fas fa-volume-up"></i> <strong>Using positive communication</strong> - Call the ball clearly and use encouraging words</li>
+                        <li><i class="fas fa-user-check"></i> <strong>Celebrating team successes</strong> - High-fives and cheers for good plays by anyone</li>
+                        <li><i class="fas fa-redo"></i> <strong>Being patient with repeated errors</strong> - Understand that practice makes perfect</li>
+                    </ul>
+                </div>
+                
+                <div class="navigation">
+                    <button class="nav-btn nav-btn-prev">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-btn nav-btn-next">
+                        Next: How to Show Tolerance <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 7: How Students Can Show Tolerance -->
+        <div id="slide7" class="page">
+            <div class="guide-header">
+                <h1>How Students Can Show Tolerance</h1>
+                <p class="guide-subtitle">Practical actions for inclusive behavior</p>
+            </div>
+            
+            <div class="content-card">
+                <div class="step-title">
+                    <span class="step-number"><i class="fas fa-user-check"></i></span>
+                    <span>Actions you can take to promote tolerance</span>
+                </div>
+                
+                <div class="content-grid">
+                    <div class="content-box principles">
+                        <h3><i class="fas fa-grin-beam-sweat"></i> Do Not Laugh at Mistakes</h3>
+                        <p>Everyone makes errors. Respond with support, not laughter. Remember how it feels when you make a mistake.</p>
+                    </div>
+                    
+                    <div class="content-box example">
+                        <h3><i class="fas fa-comment-dots"></i> Give Positive Feedback</h3>
+                        <p>Use specific, encouraging feedback: "Great serve!" "Nice pass!" "Good positioning!"</p>
+                    </div>
+                    
+                    <div class="content-box principles">
+                        <h3><i class="fas fa-user-plus"></i> Include Everyone in Activities</h3>
+                        <p>When choosing teams or partners, make sure no one is left out. Welcome new players warmly.</p>
+                    </div>
+                    
+                    <div class="content-box example">
+                        <h3><i class="fas fa-hands"></i> Offer Help When Needed</h3>
+                        <p>If a teammate struggles with a skill, offer to practice together or share helpful tips.</p>
+                    </div>
+                </div>
+                
+                <div class="key-points" style="margin-top: 30px;">
+                    <h3 style="color: var(--secondary); margin-bottom: 15px;"><i class="fas fa-lightbulb"></i> Quick Tips:</h3>
+                    <ul>
+                        <li><i class="fas fa-smile"></i> Smile and make eye contact with teammates</li>
+                        <li><i class="fas fa-hand-peace"></i> Use positive body language</li>
+                        <li><i class="fas fa-microphone-alt"></i> Speak kindly and respectfully</li>
+                        <li><i class="fas fa-users"></i> Celebrate team achievements together</li>
+                    </ul>
+                </div>
+                
+                <div class="navigation">
+                    <button class="nav-btn nav-btn-prev">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-btn nav-btn-next">
+                        Next: Values Learned <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 8: Values Learned in Volleyball -->
+        <div id="slide8" class="page">
+            <div class="guide-header">
+                <h1>Values Learned in Volleyball</h1>
+                <p class="guide-subtitle">Life skills developed through sports</p>
+            </div>
+            
+            <div class="content-card">
+                <div class="step-title">
+                    <span class="step-number"><i class="fas fa-award"></i></span>
+                    <span>Important values that volleyball teaches</span>
+                </div>
+                
+                <div class="values-container">
+                    <div class="value-card">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Respect</h3>
+                        <p>Respecting teammates, opponents, coaches, and officials. Understanding that everyone deserves dignity.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <i class="fas fa-people-carry"></i>
+                        <h3>Cooperation</h3>
+                        <p>Working together towards a common goal. Understanding that teamwork achieves more than individual effort.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <i class="fas fa-hourglass-half"></i>
+                        <h3>Patience</h3>
+                        <p>Understanding that skill development takes time. Being patient with yourself and others during learning.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <i class="fas fa-medal"></i>
+                        <h3>Sportsmanship</h3>
+                        <p>Playing fair, accepting outcomes gracefully, and prioritizing enjoyment over winning at all costs.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px; padding: 25px; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: var(--radius);">
+                    <h3 style="color: var(--secondary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-brain"></i> How These Values Help Beyond Volleyball
+                    </h3>
+                    <p style="font-size: 1.1rem;">
+                        These values don't just stay on the court. They help in classrooms, friendships, family relationships, 
+                        and future careers. Learning to work with different people is a valuable life skill.
+                    </p>
+                </div>
+                
+                <div class="navigation">
+                    <button class="nav-btn nav-btn-prev">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-btn nav-btn-next">
+                        Next: Conclusion <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 9: Conclusion -->
+        <div id="slide9" class="page">
+            <div class="guide-header">
+                <h1>Conclusion</h1>
+                <p class="guide-subtitle">The importance of tolerance and acceptance</p>
+            </div>
+            
+            <div class="content-card">
+                <div class="step-title">
+                    <span class="step-number"><i class="fas fa-flag-checkered"></i></span>
+                    <span>Key Takeaways</span>
+                </div>
+                
+                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    <div style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); padding: 40px; border-radius: var(--radius); margin-bottom: 30px;">
+                        <i class="fas fa-quote-left" style="font-size: 2rem; color: var(--success); margin-bottom: 20px;"></i>
+                        <h2 style="color: var(--secondary); margin-bottom: 20px; font-size: 1.8rem;">
+                            Tolerance and acceptance make volleyball enjoyable and fair for everyone
+                        </h2>
+                        <p style="font-size: 1.2rem; color: var(--dark);">
+                            By respecting teammates and working together, students can build strong teamwork 
+                            and improve their performance in class.
+                        </p>
+                    </div>
+                    
+                    <div class="key-points" style="text-align: left;">
+                        <h3 style="color: var(--secondary); margin-bottom: 20px; text-align: center;">
+                            <i class="fas fa-check-circle"></i> Remember These Key Points:
+                        </h3>
+                        <ul>
+                            <li><i class="fas fa-users"></i> <strong>Everyone has different skills</strong> - And that's what makes teams strong</li>
+                            <li><i class="fas fa-handshake"></i> <strong>Respect is essential</strong> - For teammates, opponents, and yourself</li>
+                            <li><i class="fas fa-heart"></i> <strong>Acceptance builds confidence</strong> - When players feel accepted, they perform better</li>
+                            <li><i class="fas fa-trophy"></i> <strong>Teamwork creates success</strong> - Together, we achieve more than alone</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-top: 40px; padding: 25px; background: var(--light); border-radius: var(--radius); border: 2px solid var(--accent);">
+                        <h3 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-graduation-cap"></i> Final Message
+                        </h3>
+                        <p style="font-size: 1.2rem;">
+                            Remember: Volleyball is more than just a game. It's an opportunity to learn important life skills, 
+                            build friendships, and create positive experiences for everyone involved. Practice tolerance and 
+                            acceptance both on and off the court!
+                        </p>
+                    </div>
+                <script>
+    // SUPER SIMPLE SOLUTION
+    document.addEventListener('DOMContentLoaded', function() {
+        // Make Start button work
+        const startBtn = document.querySelector('.btn');
+        if (startBtn) {
+            startBtn.addEventListener('click', function() {
+                document.getElementById('front-page').classList.remove('active');
+                document.getElementById('slide2').classList.add('active');
+            });
+        }
+        
+        // Make Next buttons work
+        document.querySelectorAll('.nav-btn-next').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const current = document.querySelector('.page.active');
+                if (!current) return;
+                
+                // Hide current page
+                current.classList.remove('active');
+                
+                // Show next page based on current page ID
+                const pageMap = {
+                    'front-page': 'slide2',
+                    'slide2': 'slide3',
+                    'slide3': 'slide4',
+                    'slide4': 'slide5',
+                    'slide5': 'slide6',
+                    'slide6': 'slide7',
+                    'slide7': 'slide8',
+                    'slide8': 'slide9',
+                    'slide9': 'front-page'
+                };
+                
+                const nextPageId = pageMap[current.id];
+                if (nextPageId) {
+                    document.getElementById(nextPageId).classList.add('active');
+                }
+                
+                window.scrollTo(0, 0);
+            });
+        });
+        
+        // Make Previous buttons work
+        document.querySelectorAll('.nav-btn-prev').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const current = document.querySelector('.page.active');
+                if (!current) return;
+                
+                // Hide current page
+                current.classList.remove('active');
+                
+                // Show previous page based on current page ID
+                const pageMap = {
+                    'slide2': 'front-page',
+                    'slide3': 'slide2',
+                    'slide4': 'slide3',
+                    'slide5': 'slide4',
+                    'slide6': 'slide5',
+                    'slide7': 'slide6',
+                    'slide8': 'slide7',
+                    'slide9': 'slide8'
+                };
+                
+                const prevPageId = pageMap[current.id];
+                if (prevPageId) {
+                    document.getElementById(prevPageId).classList.add('active');
+                }
+                
+                window.scrollTo(0, 0);
+            });
+        });
+    });
+</script>
